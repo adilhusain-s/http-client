@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	resp, err := http.Get("http://localhost:8080/auth")
+	resp, err := http.Get("http://localhost:8080/jwt")
 	if err != nil {
 		log.Printf("failed to get data from api %v", err)
 	}
