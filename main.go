@@ -1,13 +1,16 @@
 package main
 
 import (
+	"bytes"
 	"io"
 	"log"
 	"net/http"
 )
 
 func main() {
-	resp, err := http.Get("http://localhost:8080/jwt")
+	reqBodyStr := "client info and api key"
+
+	resp, err := http.Post("http://localhost:8080/jwt", "application/text", bytes.NewBuffer([]byte(reqBodyStr)))
 	if err != nil {
 		log.Printf("failed to get data from api %v", err)
 	}
@@ -17,5 +20,5 @@ func main() {
 		log.Printf("failed to read data from response body %v", err)
 	}
 
-	log.Printf("response: %v", body)
+	log.Printf("response: %s", body)
 }
